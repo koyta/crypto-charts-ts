@@ -1,0 +1,47 @@
+aside {
+    display: inline-flex;
+
+    height: 100%;
+    width: 250px;
+
+    background-color: var(--blue);
+
+    position: relative;
+}
+
+aside > .container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    padding: 5vh 0;
+    width: 100%;
+}
+
+aside nav {
+    color: white;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+aside nav ul {
+    list-style: none;
+}
+
+aside nav ul > li {
+    padding: 1vh;
+    text-align: center;
+}
+
+aside nav li > a, aside nav li > a:visited, aside nav li > a:focus {
+    text-decoration: none;
+    color: white;
+    font-size: 120%;
+    cursor: pointer;
+}
+
+aside nav li > a:hover {
+    text-decoration: underline;
+}
