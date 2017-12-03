@@ -2,7 +2,6 @@ import * as React from 'react';
 import './App.css';
 
 // Scripts
-// import Auth from './scripts/authentication';
 
 // Components
 import Menu from './containers/Menu';

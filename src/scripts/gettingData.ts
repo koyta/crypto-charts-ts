@@ -1,30 +1,37 @@
 import { options, tickerUrl } from './authentication';
-import axios, { AxiosPromise } from 'axios';
+import axios from 'axios';
 
-function averageOverTime(days: number): AxiosPromise {
-    return axios.get('https://apiv2.bitcoinaverage.com/indices/global/history/BTCUSD?format=json');
-}
-
-function makeRequestUrl(crypto: string, currency: string): string {
-    const result = tickerUrl + crypto + currency;
-    return result;
-}
-
-export function makeRequest(crypto: string, currency: string) {
-
-    axios.get(makeRequestUrl(crypto, currency), options)
-        .then( onfullfiled => { console.log(onfullfiled.data); })
-        .catch( reason => {console.error(reason); });
-    
-}
-
-export const getDataOverDays = (days: number) => {
-    return averageOverTime(days)
-        .then((data) => {
-            return data.data;
-        });
+const makeRequestUrl = function (crypto: string, currency: string): string {
+    return tickerUrl + crypto + currency;
 };
 
-export const testApiRoot: string = 'https://jsonplaceholder.typicode.com';
+const makeRequest = function (crypto: string, currency: string) {
+    return axios.get(makeRequestUrl(crypto, currency), options)
+        .then(onfullfiled => Promise.resolve(onfullfiled))
+        .catch(onrejected => console.error(onrejected));
+};
 
-console.log(averageOverTime(30));
+const getDataOverDaysRequest = function(days: number) {
+    let url = 'https://apiv2.bitcoinaverage.com/indices/global/history/BTCUSD?period=alltime&?format=json';
+    return axios.get(url)
+        .then(value => Promise.resolve(value.data.slice(0, days)))
+        .catch(error => Promise.reject(error));
+};
+
+async function getDataOverDays(days: number) {
+    try {
+        const data = await getDataOverDaysRequest(days);
+        getValue(data);
+    } catch (e) {
+        console.error(e);
+    }
+}
+
+function getValue(value: object) {
+    console.log(value);
+    return value;
+}
+
+export {
+    makeRequest, getDataOverDays, getValue
+};
