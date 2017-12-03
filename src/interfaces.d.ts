@@ -1,7 +1,13 @@
+import { ChartData } from 'chart.js';
+
 interface IMainProps {
-    title: string;
+    title?: string;
 }
 
 interface IChartProps {
-    data: any;
+    chartData: ChartData;
+}
+
+interface IChartState {
+    chartData: ChartData;
 }

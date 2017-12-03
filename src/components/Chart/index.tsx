@@ -1,25 +1,27 @@
 import * as React from 'react';
 import { Line } from 'react-chartjs-2';
+import {IChartProps} from '../../interfaces';
+// import { ChartData } from 'chart.js';
 
-class Chart extends React.Component<IChartProps, {}> {
+// const chartData: ChartData = {
+//     datasets: [
+//         {
+//             data: [5, 6, 7, 8, 9, 10]
+//         }
+//     ]
+// };
 
-  constructor(props: IChartProps) {
-    super(props);
-  }
-
-  public render() {
+const Chart = (props: IChartProps) => {
     return (
-      <div className="chart">
-        <Line
-          data={this.props.data}
-          width={800}
-          height={350}
-          redraw={true}
-        />
-      </div>
+        <div className="chart">
+            <Line
+                data={props.chartData}
+                width={800}
+                height={350}
+                redraw={true}
+            />
+        </div>
     );
-  }
-
-}
+};
 
 export default Chart;
