@@ -32,3 +32,25 @@ main h1 {
 main .table {
     height: 50%;
 }
+
+.btn {
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    font-family: 'Lato', sans-serif;
+    transition: background-color .3s, color .3s
+}
+
+.btn-primary {
+    background-color: var(--blue);
+    border: 1px solid var(--white);
+    color: white;
+}
+
+.btn-primary:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    background-color: white;
+}

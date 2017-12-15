@@ -19,14 +19,12 @@
     "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
-    "@types/chart.js": "^2.7.0",
+    "@types/chart.js": "^2.7.3",
     "@types/jest": "^21.1.8",
-    "@types/node": "^8.0.53",
-    "@types/react": "^16.0.25",
+    "@types/node": "^8.0.58",
+    "@types/react": "^16.0.29",
     "@types/react-dom": "^16.0.3",
-    "@types/react-table": "^6.6.0",
     "axios": "^0.17.1",
-    "react-chartjs-2": "^2.6.4",
-    "react-table": "^6.7.4"
+    "react-chartjs-2": "^2.6.4"
   }
 }

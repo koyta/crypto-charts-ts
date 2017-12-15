@@ -1,32 +1,20 @@
 import * as React from 'react';
 import Chart from '../../components/Chart';
-import {IChartProps, IChartState} from '../../interfaces';
+// import {IChartProps, IChartState} from '../../interfaces';
+import * as Charts from 'react-chartjs-2';
+import {IChartContainerProps} from '../../interfaces';
+import {inject, observer} from 'mobx-react';
+import {toJS} from 'mobx';
 
-class ChartContainer extends React.Component<IChartProps, IChartState> {
-
-    constructor(props: IChartProps) {
-        super(props);
-        this.state = {
-            chartData: {}
-        };
-    }
-
-    componentDidMount() {
-        this.setState({
-            chartData: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'Jule', 'June'],
-                datasets: [
-                    {
-                        data: [100,25,23,5,61,21,75]
-                    }
-                ]
-            }
-        });
-    }
+@inject('ChartStore') @observer
+class ChartContainer extends React.Component<IChartContainerProps, {}> {
 
     render() {
+        const { ChartStore } = this.props;
         return (
-            <Chart chartData={this.state.chartData}/>
+            <div className="chart">
+                <Chart chartData={toJS(ChartStore.cData)}/>
+            </div>
         );
     }
 }

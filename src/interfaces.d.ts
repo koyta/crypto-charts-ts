@@ -1,13 +1,23 @@
-import { ChartData } from 'chart.js';
+import {ChartComponentProps, ChartData} from 'react-chartjs-2';
 
-interface IMainProps {
-    title?: string;
+interface IMainContainerProps {
+    pageHeading?: string;
+    onButtonClick?(event: object): void
+    onHistoricalBtnClick?(event: object): void
+    ChartStore?: any
 }
 
-interface IChartProps {
-    chartData: ChartData;
+interface IMainComponentProps {
+    pageHeading?: string;
+    onButtonClick?(event: object): void
+    onHistoricalBtnClick?(event: object): void
+    ChartStore?: any
 }
 
-interface IChartState {
-    chartData: ChartData;
+interface IChartContainerProps {
+    ChartStore?: any
+}
+
+interface IChartComponentProps {
+    chartData: any;
 }

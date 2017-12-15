@@ -11,10 +11,11 @@ const signature = payload + '.' + hexHash;
 
 // Exports
 const tickerUrl = 'https://apiv2.bitcoinaverage.com/indices/global/ticker';
+const historicalUrl = 'https://apiv2.bitcoinaverage.com/indices/global/history/';
 let options = {
     'X-signature-id': signature
 };
 
 export {
-    tickerUrl, options
+    tickerUrl, historicalUrl, options
 };

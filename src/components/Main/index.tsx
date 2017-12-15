@@ -1,26 +1,20 @@
 import * as React from 'react';
 import Chart from '../../containers/Chart';
-import {IMainProps} from '../../interfaces';
+import {IMainComponentProps} from '../../interfaces';
 
-class Main extends React.Component<IMainProps> {
-
-    constructor(props: IMainProps) {
-        super(props);
-    }
-
-    render() {
-
-        return (
-            <main>
-                <div className="container">
-                    <header>
-                        <h1>Bitcoin</h1>
-                    </header>
-                    <Chart chartData={{}}/>
-                </div>
-            </main>
-        );
-    }
-}
+const Main = (props: IMainComponentProps) => {
+    return (
+        <main>
+            <div className="container">
+                <header>
+                    <h1>{props.pageHeading}</h1>
+                </header>
+                <Chart/>
+                <button className="btn btn-primary" onClick={props.onButtonClick}>get info about <b>BTC</b> in <b>USD</b></button>
+                <button className="btn btn-primary" onClick={props.onHistoricalBtnClick}>get historical data</button>
+            </div>
+        </main>
+    );
+};
 
 export default Main;
