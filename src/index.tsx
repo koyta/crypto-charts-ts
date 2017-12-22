@@ -15,5 +15,6 @@ useStrict(true);
 ReactDOM.render(
     <Provider {...stores}>
         <App />
-    </Provider>, document.getElementById('root')
+    </Provider>,
+    document.getElementById('root')
 );
