@@ -21,3 +21,8 @@ interface IChartContainerProps {
 interface IChartComponentProps {
     chartData: any;
 }
+
+interface FetchedAverageData {
+    readonly average: number;
+    readonly time: string;
+}
