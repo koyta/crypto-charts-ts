@@ -1,12 +1,12 @@
 aside {
-    display: inline-flex;
-
     height: 100%;
-    width: 250px;
-
     background-color: var(--blue);
-
     position: relative;
+    grid-column: 1 / 2;
+}
+
+aside header {
+    color: var(--white);
 }
 
 aside > .container {
@@ -16,7 +16,6 @@ aside > .container {
     align-items: center;
     align-content: center;
     padding: 5vh 0;
-    width: 100%;
 }
 
 aside nav {
@@ -28,6 +27,8 @@ aside nav {
 
 aside nav ul {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 aside nav ul > li {

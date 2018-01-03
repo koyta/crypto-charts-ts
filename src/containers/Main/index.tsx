@@ -6,21 +6,21 @@ import {IMainContainerProps} from '../../interfaces';
 @inject('ChartStore') @observer
 class MainContainer extends React.Component <IMainContainerProps, {}> {
 
-    onButtonClick = () => {
-        this.props.ChartStore.fetch();
-    };
-    onHistoricalBtnClick = () => {
-        this.props.ChartStore.historicalFetch();
-    };
+  onButtonClick = () => {
+    this.props.ChartStore.fetch('BTC', 'RUB', ['averages', 'ask']);
+  };
+  onHistoricalBtnClick = () => {
+    this.props.ChartStore.historicalFetch();
+  };
 
-    render() {
-        return (
-            <Main pageHeading="Bitcoin"
-                  onButtonClick={this.onButtonClick}
-                  onHistoricalBtnClick={this.onHistoricalBtnClick}
-            />
-        );
-    }
+  render() {
+    return (
+      <Main pageHeading="Bitcoin"
+            onButtonClick={this.onButtonClick}
+            onHistoricalBtnClick={this.onHistoricalBtnClick}
+      />
+    );
+  }
 }
 
 export default MainContainer;

@@ -1,15 +1,21 @@
 import * as React from 'react';
-import { Line } from 'react-chartjs-2';
+import {Doughnut, Line, Pie} from 'react-chartjs-2';
 import { IChartComponentProps } from '../../interfaces';
+
+const options = {
+  responsive: true,
+  maintainAspectRatio: true,
+}
 
 const Chart = (props: IChartComponentProps) => {
     return (
         <div className="chart">
             <Line
                 data={props.chartData}
-                width={800}
+                width={1000}
                 height={500}
-                redraw={true}
+                redraw={false}
+                options={options}
             />
         </div>
     );

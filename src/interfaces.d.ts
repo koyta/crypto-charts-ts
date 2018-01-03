@@ -1,4 +1,10 @@
 import {ChartComponentProps, ChartData} from 'react-chartjs-2';
+import {IObservableFactory, IObservableObject} from "mobx";
+import * as chartjs from "chart.js";
+
+interface IMenuInterface {
+  User?: any
+}
 
 interface IMainContainerProps {
     pageHeading?: string;
@@ -15,14 +21,14 @@ interface IMainComponentProps {
 }
 
 interface IChartContainerProps {
-    ChartStore?: any
+    ChartStore?: any;
 }
 
 interface IChartComponentProps {
-    chartData: any;
+    chartData: chartjs.ChartData;
 }
 
-interface FetchedAverageData {
+interface IFetchedAverageData {
     readonly average: number;
     readonly time: string;
 }
