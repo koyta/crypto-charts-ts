@@ -1,7 +1,7 @@
 # CryptoCharts
 Application was bootstrapped with Create React App.
 
-## Преподаватель
+## Teacher
 ITMO University, Volynkin Andrey Vladimirovich.
 
 ### Technical task
