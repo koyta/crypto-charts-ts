@@ -1,12 +1,8 @@
 main {
-    display: inline-flex;
-
-    height: 100%;
-    width: 85vw;
-
-    background-color: var(--white);
-
+    background-color: white;
     position: relative;
+    grid-column: 2 / 7;
+    padding: 2vh 2vw
 }
 
 main > .container {
@@ -16,11 +12,10 @@ main > .container {
     align-items: center;
     align-content: center;
     padding: 5vh;
-    width: 100%;
 }
 
 main header {
-    width: 100%;
+    text-align: center;
 }
 
 main h1 {

@@ -10,11 +10,10 @@ import './components/Main/Main.css';
 class App extends React.Component {
   render() {
     return (
-      <div className="App">
-        <DevTools.default />
-        <Menu />
+      [
+        <Menu />,
         <Main />
-      </div>
+      ]
     );
   }
 }
