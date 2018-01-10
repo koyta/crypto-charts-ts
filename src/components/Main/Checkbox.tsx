@@ -24,13 +24,15 @@ export default class Checkbox extends React.Component<CheckboxProps, CheckboxSta
 
   render() {
     return (
-      <label>
-        <input
-          type="checkbox"
-          onClick={this.onClickHandle}
-          checked={this.state.checked}/>
-        {this.props.name}
-      </label>
+      <div className="cb">
+        <label className="cb_label">
+          <input type="checkbox" className="cb_input"
+                 onClick={this.onClickHandle}
+                 checked={this.state.checked}
+          />
+          {this.props.name}
+        </label>
+      </div>
     );
   }
 }
