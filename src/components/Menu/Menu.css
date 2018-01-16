@@ -1,48 +1,76 @@
-aside {
+aside.sidebar {
     height: 100%;
-    background-color: var(--blue);
+    background-color: var(--gray);
     position: relative;
-    grid-column: 1 / 2;
+    grid-column: 1/1;
+    z-index: 10;
+    transition: transform .4s;
+    transform: translateX(-100%);
 }
 
-aside header {
-    color: var(--white);
+aside.sidebar--active {
+    transform: translateX(0);
 }
 
-aside > .container {
+aside.sidebar header h1 {
+    margin: 0 0 10vh;
+    font-weight: 400;
+    color: black;
+    font-size: 175%;
+}
+
+aside.sidebar > .container {
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
     align-content: center;
-    padding: 5vh 0;
+    padding: 5vh 45px;
 }
 
-aside nav {
-    color: white;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+aside.sidebar nav {
+    color: black;
+    position: relative;
 }
 
-aside nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+section.sidebar__options {
+    display: block;
+    width: 100%;
 }
 
-aside nav ul > li {
-    padding: 1vh;
-    text-align: center;
+.options__nav {
+    margin: 1.25em 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
-aside nav li > a, aside nav li > a:visited, aside nav li > a:focus {
-    text-decoration: none;
-    color: white;
-    font-size: 120%;
+.options__nav_el {
+    display: block;
+    font-size: 125%;
+    margin: 0 5%;
+    color: black;
+    transition: color .3s;
     cursor: pointer;
 }
 
-aside nav li > a:hover {
-    text-decoration: underline;
+.options__nav_el--active {
+    color: var(--darkblue)
+}
+
+form.sidebar__form {
+    width: 100%
+}
+
+fieldset.form__set {
+    border: 0;
+    margin: 10px 0;
+    padding: 0;
+}
+
+fieldset > .set_title {
+    display: block;
+    margin: 1.5em 0 .5em;
+    font-size: 125%;
+    font-weight: normal;
 }

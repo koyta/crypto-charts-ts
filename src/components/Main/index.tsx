@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Chart from '../../containers/Chart';
-import {IMainComponentProps} from '../../interfaces';
-import Checkbox from "./Checkbox";
+import { MainComponentProps } from '../../interfaces';
+import Devtools from 'mobx-react-devtools';
 
-const Main = (props: IMainComponentProps) => {
+const Main = (props: MainComponentProps) => {
   return (
     <main>
+      <Devtools />
       <div className="container">
         <header>
           <h1>{props.pageHeading}</h1>
@@ -14,10 +15,6 @@ const Main = (props: IMainComponentProps) => {
         <button className="btn btn-primary" onClick={props.onButtonClick}>get info about <b>BTC</b> in <b>USD</b>
         </button>
         <button className="btn btn-primary" onClick={props.onHistoricalBtnClick}>get historical data</button>
-        <Checkbox name={"BTC"}/>
-        <Checkbox name={"BCH"}/>
-        <Checkbox name={"LTC"}/>
-        <Checkbox name={"ETH"}/>
       </div>
     </main>
   );

@@ -1,4 +1,11 @@
 :root {
-    --blue: #2F80ED;
-    --white: #FAFAFA;
+    --gray: #F3F3F3;
+    --lightblue: #F1F9FF;
+    --midblue: #BCE0FD;
+    --blue: #7FC4FD;
+    --darkblue: #2699FB;
+}
+
+* {
+    font-family: 'Segoe UI', Arial, sans-serif;
 }
