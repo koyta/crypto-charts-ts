@@ -1,4 +1,4 @@
-import {historicalUrl, tickerUrl} from './authentication';
+import { historicalUrl, tickerUrl } from './authentication';
 import axios from 'axios';
 
 const makeTickerUrl = function (cryptocurrency: string, currency?: string): string {

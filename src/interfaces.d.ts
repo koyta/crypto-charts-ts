@@ -1,34 +1,42 @@
-import {ChartComponentProps, ChartData} from 'react-chartjs-2';
-import {IObservableFactory, IObservableObject} from "mobx";
-import * as chartjs from "chart.js";
+import * as chartjs from 'chart.js';
+import * as React from 'react';
 
-interface IMenuInterface {
-  User?: any
+declare module '*.png'; // for import images
+
+interface AppProps {
+  store?: any;
 }
 
-interface IMainContainerProps {
-    pageHeading?: string;
-    onButtonClick?(event: object): void
-    onHistoricalBtnClick?(event: object): void
-    ChartStore?: any
+interface MenuContainer {
+  store?: any;
+  onCurrencyChange?(e: React.SyntheticEvent<HTMLInputElement>): void;
+  onTypeChange?(e: React.SyntheticEvent<HTMLInputElement>): void;
 }
 
-interface IMainComponentProps {
-    pageHeading?: string;
-    onButtonClick?(event: object): void
-    onHistoricalBtnClick?(event: object): void
-    ChartStore?: any
+interface MainContainerProps {
+  pageHeading?: string;
+  store?: any;
+  onButtonClick?(event: object): void;
+  onHistoricalBtnClick?(event: object): void;
 }
 
-interface IChartContainerProps {
-    ChartStore?: any;
+interface MainComponentProps {
+  pageHeading?: string;
+  store?: any;
+  onButtonClick?(event: object): void;
+  onHistoricalBtnClick?(event: object): void;
 }
 
-interface IChartComponentProps {
-    chartData: chartjs.ChartData;
+interface ChartContainerProps {
+  store?: any;
 }
 
-interface IFetchedAverageData {
-    readonly average: number;
-    readonly time: string;
+interface ChartComponentProps {
+  chartData: chartjs.ChartData;
+  type: chartjs.ChartType;
+}
+
+interface FetchedAverageData {
+  readonly average: number;
+  readonly time: string;
 }

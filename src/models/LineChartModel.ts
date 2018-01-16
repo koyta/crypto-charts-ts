@@ -1,5 +1,5 @@
-import {observable} from 'mobx';
-import {ChartData, ChartDataSets} from 'chart.js';
+import { observable } from 'mobx';
+import { ChartData } from 'chart.js';
 
 export default class LineChartModel {
     @observable data: ChartData;

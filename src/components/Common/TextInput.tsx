@@ -1,8 +1,10 @@
-import * as React from 'react'
+import * as React from 'react';
+import { inject, observer } from 'mobx-react';
 
 interface TextInputProps {
   name: string;
   placeholder?: string;
+  store?: any;
 }
 
 interface TextInputState {
@@ -10,21 +12,34 @@ interface TextInputState {
   disabled?: boolean;
 }
 
-export default class TextInput extends React.Component<TextInputProps, TextInputState> {
+@inject('store') @observer
+class TextInput extends React.Component<TextInputProps, TextInputState> {
+
   constructor(props: TextInputProps) {
     super(props);
     this.state = ({
-      value: '',
+      value: '', // для сохранения результата
       disabled: false
     });
   }
 
-  onChangeHandler = (e: React.SyntheticEvent<HTMLInputElement>) => {
-    e.preventDefault();
+  componentDidMount() {
     this.setState({
-      value: e.currentTarget.value
-    })
-  };
+      value: this.props.store.UserStore.numberOfResults
+    });
+  }
+
+  onChangeHandler = (e: React.SyntheticEvent<HTMLInputElement>) => {
+    this.setState({value: e.currentTarget.value.toString()});
+    this.props.store.UserStore.setNumResults(e.currentTarget.value);
+  }
+
+  onKeyPressHandle = (e: any) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      // FIXME Перезагружает страницу по нажатию на Enter
+    }
+  }
 
   render() {
     return (
@@ -32,16 +47,20 @@ export default class TextInput extends React.Component<TextInputProps, TextInput
         <label className="ti_label">
           {this.props.name}
         </label>
-        <input type="text"
-               className="ti_input"
-               value={this.state.value}
-               placeholder={this.props.placeholder}
-               disabled={this.state.disabled}
-               onChange={e => this.onChangeHandler(e)}
+        <input
+          type="text"
+          className="ti_input"
+          value={this.state.value}
+          placeholder={this.props.placeholder}
+          disabled={this.state.disabled}
+          onChange={e => this.onChangeHandler(e)}
+          onKeyDown={e => this.onKeyPressHandle(e)}
         />
       </div>
     );
   }
 }
 
-//TODO Подрубить к mobx
+export default TextInput;
+
+// TODO Подрубить к mobx
