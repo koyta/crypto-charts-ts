@@ -3,6 +3,7 @@ import { MenuContainer } from '../../interfaces';
 import { observer } from 'mobx-react';
 import TextInput from '../Common/TextInput';
 import RadioButton from '../Common/RadioButton';
+import Checkbox from '../Common/Checkbox';
 
 const Menu = observer((props: MenuContainer) => {
   const { UserStore, AppStore } = props.store;
@@ -47,51 +48,10 @@ const Menu = observer((props: MenuContainer) => {
               <fieldset className="form__set">
                 <legend className="set_title">Currencies<i>(max 2)</i></legend>
                 <div className="set_content">
-
-                  <div className="cb">
-                    <label className="cb_label">
-                      <input
-                        type="checkbox"
-                        className="cb_input"
-                        value="BTC"
-                        onClick={(e) => { UserStore.setCrypto(e.currentTarget.value); }}
-                      />Bitcoin
-                    </label>
-                  </div>
-
-                  <div className="cb">
-                    <label className="cb_label">
-                      <input
-                        type="checkbox"
-                        className="cb_input"
-                        value="LTC"
-                        onClick={(e) => { UserStore.setCrypto(e.currentTarget.value); }}
-                      />Litecoin
-                    </label>
-                  </div>
-
-                  <div className="cb">
-                    <label className="cb_label">
-                      <input
-                        type="checkbox"
-                        className="cb_input"
-                        value="BCH"
-                        onClick={(e) => { UserStore.setCrypto(e.currentTarget.value); }}
-                      />Bitcash
-                    </label>
-                  </div>
-
-                  <div className="cb">
-                    <label className="cb_label">
-                      <input
-                        type="checkbox"
-                        className="cb_input"
-                        value="ETH"
-                        onClick={(e) => { UserStore.setCrypto(e.currentTarget.value); }}
-                      />Etherium
-                    </label>
-                  </div>
-
+                  <Checkbox text={'BTC'} value={'BTC'}/>
+                  <Checkbox text={'ETH'} value={'ETH'}/>
+                  <Checkbox text={'LTC'} value={'LTC'}/>
+                  <Checkbox text={'BCH'} value={'BCH'}/>
                 </div>
               </fieldset>
               <fieldset className="form__set">

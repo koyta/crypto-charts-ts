@@ -5,38 +5,40 @@ interface CheckboxProps{
   text: string;
   value: string | number | string[];
   defaultChecked?: boolean;
+  store?: any;
 }
 
 interface CheckboxState {
   checked: boolean;
 }
 
-@inject('ChartStore') @observer class Checkbox extends React.Component<CheckboxProps, CheckboxState> {
+@inject('store') @observer class Checkbox extends React.Component<CheckboxProps, CheckboxState> {
   constructor(props: CheckboxProps) {
     super(props);
-    this.state = ({
-      checked: false
-    });
+    this.state = {
+      checked: this.props.store.UserStore.hasCrypto(this.props.value)
+    };
   }
 
-  onClickHandle = (e: React.SyntheticEvent<HTMLInputElement>) => {
-    e.preventDefault();
+  onChangeHandle = (e: React.SyntheticEvent<HTMLInputElement>) => {
+    const { UserStore } = this.props.store;
+    UserStore.setCrypto(this.props.value);
     this.setState({
-      checked: !this.state.checked
+      checked: UserStore._crypto.has(this.props.value)
     });
   }
 
   render() {
+    const { UserStore } = this.props.store;
     return (
       <div className="cb">
         <label className="cb_label">
           <input
             type="checkbox"
             className="cb_input"
-            onClick={e => this.onClickHandle(e)}
+            onChange={e => this.onChangeHandle(e)}
             checked={this.state.checked}
             value={this.props.value}
-            defaultChecked={this.props.defaultChecked}
           />
           {this.props.text}
         </label>
