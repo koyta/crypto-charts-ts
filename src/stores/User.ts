@@ -22,7 +22,7 @@ class User {
     return this._numResults;
   }
 
-  @action hasKey(key: string) {
+  @action hasCrypto(key: string) {
     return this._crypto.has(key);
   }
 
