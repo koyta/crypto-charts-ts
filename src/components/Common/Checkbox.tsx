@@ -24,7 +24,7 @@ interface CheckboxState {
     const { UserStore } = this.props.store;
     UserStore.setCrypto(this.props.value);
     this.setState({
-      checked: UserStore._crypto.has(this.props.value)
+      checked: UserStore.hasCrypto(this.props.value)
     });
   }
 

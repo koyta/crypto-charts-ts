@@ -25,7 +25,7 @@ class TextInput extends React.Component<TextInputProps, TextInputState> {
 
   componentDidMount() {
     this.setState({
-      value: this.props.store.UserStore.numberOfResults
+      value: this.props.store.UserStore.getNumResults
     });
   }
 
