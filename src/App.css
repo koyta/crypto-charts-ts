@@ -1,9 +1,8 @@
 .wrapper {
   position: relative;
-  height: 100vh;
-  width: 100vw;
-  display: grid;
-  grid-template-columns: 400px calc(100vw - 400px)
+  height: 100%;
+  width: 100%;
+  display: flex;
 }
 
 .btn {

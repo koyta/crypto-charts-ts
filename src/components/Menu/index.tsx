@@ -9,7 +9,7 @@ const Menu = observer((props: MenuContainer) => {
   const { UserStore, AppStore } = props.store;
 
   return (
-    <aside className="sidebar">
+    <aside className="sidebar sidebar--active">
       <div className="container">
         <header>
           <h1>Crypto<strong>Charts</strong></h1>
@@ -46,7 +46,7 @@ const Menu = observer((props: MenuContainer) => {
             // AppStore.getActiveNav === 'Data'
             <form className="sidebar__form">
               <fieldset className="form__set">
-                <legend className="set_title">Currencies<i>(max 2)</i></legend>
+                <legend className="set_title">Currencies</legend>
                 <div className="set_content">
                   <Checkbox text={'Bitcoin'} value={'BTC'}/>
                   <Checkbox text={'Etherium'} value={'ETH'}/>
