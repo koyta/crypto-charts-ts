@@ -48,10 +48,13 @@ const Menu = observer((props: MenuContainer) => {
               <fieldset className="form__set">
                 <legend className="set_title">Currencies<i>(max 2)</i></legend>
                 <div className="set_content">
-                  <Checkbox text={'BTC'} value={'BTC'}/>
-                  <Checkbox text={'ETH'} value={'ETH'}/>
-                  <Checkbox text={'LTC'} value={'LTC'}/>
-                  <Checkbox text={'BCH'} value={'BCH'}/>
+                  <Checkbox text={'Bitcoin'} value={'BTC'}/>
+                  <Checkbox text={'Etherium'} value={'ETH'}/>
+                  <Checkbox text={'Litecoin'} value={'LTC'}/>
+                  <Checkbox text={'Bitcoin Cash'} value={'BCH'}/>
+                  <Checkbox text={'Ripple'} value={'XRP'}/>
+                  <Checkbox text={'Monero'} value={'XMR'}/>
+                  <Checkbox text={'ZCash'} value={'ZEC'}/>
                 </div>
               </fieldset>
               <fieldset className="form__set">
