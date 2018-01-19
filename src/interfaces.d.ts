@@ -13,6 +13,8 @@ interface HistoryFetchedData {
   volume: number;
 }
 
+type HistoricalPeriod = 'alltime' | 'monthly' | 'daily';
+
 interface RootStore {
   UserStore: any;
   AppStore: any;
@@ -27,6 +29,7 @@ interface MenuContainer {
   store?: any;
   onCurrencyChange?(e: React.SyntheticEvent<HTMLInputElement>): void;
   onTypeChange?(e: React.SyntheticEvent<HTMLInputElement>): void;
+  onPeriodChange?(e: React.SyntheticEvent<HTMLInputElement>): void;
 }
 
 interface MainContainerProps {

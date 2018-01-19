@@ -9,7 +9,7 @@ const Menu = observer((props: MenuContainer) => {
   const { UserStore, AppStore } = props.store;
 
   return (
-    <aside className="sidebar">
+    <aside className="sidebar sidebar--active">
       <div className="container">
         <header>
           <h1>Crypto<strong>Charts</strong></h1>
@@ -46,7 +46,7 @@ const Menu = observer((props: MenuContainer) => {
             // AppStore.getActiveNav === 'Data'
             <form className="sidebar__form">
               <fieldset className="form__set">
-                <legend className="set_title">Currencies<i>(max 2)</i></legend>
+                <legend className="set_title">Currencies</legend>
                 <div className="set_content">
                   <Checkbox text={'Bitcoin'} value={'BTC'}/>
                   <Checkbox text={'Etherium'} value={'ETH'}/>
@@ -55,6 +55,14 @@ const Menu = observer((props: MenuContainer) => {
                   <Checkbox text={'Ripple'} value={'XRP'}/>
                   <Checkbox text={'Monero'} value={'XMR'}/>
                   <Checkbox text={'ZCash'} value={'ZEC'}/>
+                </div>
+              </fieldset>
+              <fieldset className="form__set">
+                <legend className="set_title">One result equal</legend>
+                <div className="set_content">
+                  <RadioButton text={'1 day'} name={'period'} value={'alltime'} onChangeHandle={props.onPeriodChange}/>
+                  <RadioButton text={'1 hour'} name={'period'} value={'monthly'} onChangeHandle={props.onPeriodChange}/>
+                  <RadioButton text={'1 minute'} name={'period'} value={'daily'} onChangeHandle={props.onPeriodChange}/>
                 </div>
               </fieldset>
               <fieldset className="form__set">
