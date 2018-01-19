@@ -52,7 +52,6 @@ const Menu = observer((props: MenuContainer) => {
                   <Checkbox text={'Etherium'} value={'ETH'}/>
                   <Checkbox text={'Litecoin'} value={'LTC'}/>
                   <Checkbox text={'Bitcoin Cash'} value={'BCH'}/>
-                  <Checkbox text={'Dash'} value={'DASH'}/>
                   <Checkbox text={'Ripple'} value={'XRP'}/>
                   <Checkbox text={'Monero'} value={'XMR'}/>
                   <Checkbox text={'ZCash'} value={'ZEC'}/>
