@@ -9,10 +9,13 @@ type ActionState = 'pending' | 'done' | 'error';
 class ChartStore {
 
   colors: chartjs.ChartColor = [
-    'rgba(189, 185, 52, 0.2)',
-    'rgba(41, 149, 48, 0.2)',
-    'rgba(189, 55, 52, 0.2)',
-    'rgba(90, 41, 127, 0.2)'
+    'rgba(126, 65, 73, 0.4)',
+    'rgba(138, 92, 123, 0.4)',
+    'rgba(118, 129, 167, 0.4)',
+    'rgba(73, 167, 185, 0.4)',
+    'rgba(69, 200, 170, 0.4)',
+    'rgba(144, 225, 134, 0.4)',
+    'rgba(239, 238, 105, 0.4)'
   ];
   nextColor: number = 0;
 
