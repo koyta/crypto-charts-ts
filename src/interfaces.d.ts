@@ -13,6 +13,8 @@ interface HistoryFetchedData {
   volume: number;
 }
 
+type HistoricalPeriod = 'alltime' | 'monthly' | 'daily';
+
 interface RootStore {
   UserStore: any;
   AppStore: any;
