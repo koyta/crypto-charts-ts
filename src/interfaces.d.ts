@@ -29,6 +29,7 @@ interface MenuContainer {
   store?: any;
   onCurrencyChange?(e: React.SyntheticEvent<HTMLInputElement>): void;
   onTypeChange?(e: React.SyntheticEvent<HTMLInputElement>): void;
+  onPeriodChange?(e: React.SyntheticEvent<HTMLInputElement>): void;
 }
 
 interface MainContainerProps {

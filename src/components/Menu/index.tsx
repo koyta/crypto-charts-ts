@@ -58,6 +58,14 @@ const Menu = observer((props: MenuContainer) => {
                 </div>
               </fieldset>
               <fieldset className="form__set">
+                <legend className="set_title">One result equal</legend>
+                <div className="set_content">
+                  <RadioButton text={'1 day'} name={'period'} value={'alltime'} onChangeHandle={props.onPeriodChange}/>
+                  <RadioButton text={'1 hour'} name={'period'} value={'monthly'} onChangeHandle={props.onPeriodChange}/>
+                  <RadioButton text={'1 minute'} name={'period'} value={'daily'} onChangeHandle={props.onPeriodChange}/>
+                </div>
+              </fieldset>
+              <fieldset className="form__set">
                 <legend className="set_title">Preferences</legend>
                 <div className="set_content">
                   <TextInput name={'# of results'} placeholder={'25'}/>

@@ -18,9 +18,18 @@ class Menu extends React.Component<MenuContainer, {}> {
     this.props.store.ChartStore.setChartType(event.currentTarget.value.toLowerCase());
   }
 
+  onPeriodChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
+    this.props.store.ChartStore.setHistoricalPeriod(event.currentTarget.value.toLowerCase());
+  }
+
   render() {
     return (
-      <MenuComponent {...this.props} onCurrencyChange={this.onCurrencyChange} onTypeChange={this.onTypeChange}/>
+      <MenuComponent
+        {...this.props}
+        onCurrencyChange={this.onCurrencyChange}
+        onTypeChange={this.onTypeChange}
+        onPeriodChange={this.onPeriodChange}
+      />
     );
   }
 }
