@@ -3,6 +3,22 @@ import * as React from 'react';
 
 declare module '*.png'; // for import images
 
+// Fetched data interfaces
+interface HistoryFetchedData {
+  average: number;
+  high: number;
+  low: number;
+  open: number;
+  time: string;
+  volume: number;
+}
+
+interface RootStore {
+  UserStore: any;
+  AppStore: any;
+  ChartStore: any;
+}
+
 interface AppProps {
   store?: any;
 }

@@ -19,7 +19,7 @@ class RadioButton extends React.Component<RadioProps, RadioState> {
   constructor(props: RadioProps) {
     super(props);
     this.state = ({
-      defaultChecked: (this.props.store.UserStore._currency === this.props.value || this.props.store.ChartStore.chartType === this.props.value)
+      defaultChecked: (this.props.store.UserStore.getCurrency === this.props.value || this.props.store.ChartStore.chartType === this.props.value)
     });
   }
 

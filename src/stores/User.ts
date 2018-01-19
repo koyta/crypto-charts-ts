@@ -1,29 +1,32 @@
-import { observable, action, ObservableMap, computed } from 'mobx';
+import { action, computed, observable, toJS } from 'mobx';
+import { RootStore } from '../interfaces';
 
-type Currencies = 'RUB'|'USD'|'EUR'|'AUD';
-type Crypts = 'BTC'|'BCH'|'LTC'|'ETH';
+type Currencies = 'RUB' | 'USD' | 'EUR' | 'AUD';
+type Crypts = 'BTC' | 'BCH' | 'LTC' | 'ETH';
 
 class User {
-  @observable _currency: Currencies;
-  @observable _crypto: ObservableMap<boolean>;
-  @observable _numResults: number;
+  @observable private _currency: Currencies;
+  @observable private _numResults: number;
+  @observable _crypto: Array<string>;
 
-  rootStore: any;
+  rootStore: RootStore;
+
   constructor(rootStore: any) {
     this.rootStore = rootStore;
     this._numResults = 20;
     this._currency = 'USD';
-    this._crypto = observable.shallowMap({'BTC': true});
+    this._crypto = ['BTC'];
   }
 
   // TODO https://github.com/jerairrest/react-chartjs-2#chartjs-defaults
 
-  @computed get numberOfResults() {
-    return this._numResults;
+  @action setNumResults(value: number) {
+    this._numResults = value;
+    console.log('Предпочтительное количество результатов теперь', this._numResults);
   }
 
-  @action hasKey(key: string) {
-    return this._crypto.has(key);
+  @computed get getNumResults(): number {
+    return this._numResults;
   }
 
   @action setCurrency(currency: Currencies) {
@@ -31,14 +34,28 @@ class User {
     console.log(`Предпочтительная валюта теперь ${this._currency}.`);
   }
 
-  @action setCrypto(crypto: Crypts) {
-      this._crypto.has(crypto) ? this._crypto.delete(crypto) : this._crypto.set(crypto, true);
-      console.log(this._crypto.keys());
-    }
+  @computed get getCurrency() {
+    return this._currency;
+  }
 
-  @action setNumResults(value: number) {
-    this._numResults = value;
-    console.log('Предпочтительное количество результатов теперь', this._numResults);
+  @action setCrypto(crypto: Crypts) {
+    const index = this._crypto.findIndex((value) => {
+      return crypto === value;
+    });
+    index !== -1 ?
+      this._crypto.splice(index, 1)
+      :
+      this._crypto.push(crypto);
+  }
+
+  @computed get getCrypto() {
+    return toJS(this._crypto);
+  }
+
+  @action hasCrypto(key: string) {
+    return (this._crypto.find(value => {
+      return key === value;
+    })) !== undefined;
   }
 }
 

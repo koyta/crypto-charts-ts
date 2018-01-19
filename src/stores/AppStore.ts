@@ -1,8 +1,9 @@
-import { observable, action, computed } from 'mobx';
+import { action, computed, observable } from 'mobx';
 import * as React from 'react';
+import { RootStore } from '../interfaces';
 
 interface AppStore {
-  rootStore: any;
+  rootStore: RootStore;
 }
 
 class AppStore {
