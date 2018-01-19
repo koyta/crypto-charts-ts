@@ -1,8 +1,7 @@
-import { action, observable, runInAction } from 'mobx';
+import { action, computed, observable, runInAction } from 'mobx';
 import * as helpers from '../utils/gettingData';
 import * as chartjs from 'chart.js';
-import { HistoryFetchedData, RootStore } from '../interfaces';
-import { ChartDataSets } from 'chart.js';
+import { HistoricalPeriod, HistoryFetchedData, RootStore } from '../interfaces';
 
 type ActionState = 'pending' | 'done' | 'error';
 
@@ -21,7 +20,8 @@ class ChartStore {
 
   @observable chartType: chartjs.ChartType;
   @observable cData: chartjs.ChartData;
-  @observable state: ActionState; // 'pending' / 'done' / 'error'
+  @observable _historicalPeriod: HistoricalPeriod;
+  state: ActionState; // 'pending' / 'done' / 'error'
 
   protected rootStore: RootStore;
 
@@ -41,6 +41,15 @@ class ChartStore {
         '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'
       ]
     };
+    this._historicalPeriod = 'alltime';
+  }
+
+  @computed get getHistoricalPeriod() {
+    return this._historicalPeriod;
+  }
+
+  @action setHistoricalPeriod(period: HistoricalPeriod) {
+    this._historicalPeriod = period;
   }
 
   /**
@@ -98,7 +107,7 @@ class ChartStore {
       let fetchedData = [];
 
       for (let i = 0; i < UserStore.getCrypto.length; i++) {
-        fetchedData.push(await helpers.getHistoricalDataAboutCrypto(UserStore.getCrypto[i], UserStore._currency, 'alltime'));
+        fetchedData.push(await helpers.getHistoricalDataAboutCrypto(UserStore.getCrypto[i], UserStore._currency, this.getHistoricalPeriod));
         console.log(`ChartStore| Loading data for crypto: ${UserStore._crypto[i]}.`);
       }
 
@@ -114,8 +123,8 @@ class ChartStore {
       console.log(slicedData);
 
       runInAction('Erasing old chart data', () => {
-          this.cData.datasets.splice(0, this.cData.datasets.length);
-          this.cData.labels.splice(0, this.cData.labels.length);
+        this.cData.datasets.splice(0, this.cData.datasets.length);
+        this.cData.labels.splice(0, this.cData.labels.length);
       });
 
       runInAction('Add new data to chart', () => {
@@ -124,8 +133,16 @@ class ChartStore {
             return item.average;
           });
           let newLabels: string[] = data.map((item: HistoryFetchedData) => {
-            return item.time.slice(0, 10);
-          });
+              switch (this.getHistoricalPeriod) {
+                case 'alltime':
+                  return item.time.slice(0, 10);
+                case 'monthly' || 'daily':
+                  return item.time.slice(5, 16);
+                default:
+                  return item.time;
+              }
+            }
+          );
           let newLegend: string = this.rootStore.UserStore.getCrypto[index];
 
           this.addChartDataToDataset(newData, newLabels, newLegend);
