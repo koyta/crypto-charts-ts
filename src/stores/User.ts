@@ -1,20 +1,21 @@
-import { observable, action, ObservableMap, computed, toJS } from 'mobx';
+import { action, computed, observable, toJS } from 'mobx';
+import { RootStore } from '../interfaces';
 
-type Currencies = 'RUB'|'USD'|'EUR'|'AUD';
-type Crypts = 'BTC'|'BCH'|'LTC'|'ETH';
+type Currencies = 'RUB' | 'USD' | 'EUR' | 'AUD';
+type Crypts = 'BTC' | 'BCH' | 'LTC' | 'ETH';
 
 class User {
   @observable private _currency: Currencies;
   @observable private _numResults: number;
-  @observable _crypto: Set<string>;
+  @observable _crypto: Array<string>;
 
-  rootStore: any;
+  rootStore: RootStore;
+
   constructor(rootStore: any) {
     this.rootStore = rootStore;
     this._numResults = 20;
     this._currency = 'USD';
-    this._crypto = new Set();
-    this._crypto.add('BTC');
+    this._crypto = ['BTC'];
   }
 
   // TODO https://github.com/jerairrest/react-chartjs-2#chartjs-defaults
@@ -38,8 +39,13 @@ class User {
   }
 
   @action setCrypto(crypto: Crypts) {
-      this._crypto.has(crypto) ? this._crypto.delete(crypto) : this._crypto.add(crypto);
-      console.log(toJS(this._crypto.keys()));
+    const index = this._crypto.findIndex((value) => {
+      return crypto === value;
+    });
+    index !== -1 ?
+      this._crypto.splice(index, 1)
+      :
+      this._crypto.push(crypto);
   }
 
   @computed get getCrypto() {
@@ -47,7 +53,9 @@ class User {
   }
 
   @action hasCrypto(key: string) {
-    return this._crypto.has(key);
+    return (this._crypto.find(value => {
+      return key === value;
+    })) !== undefined;
   }
 }
 
