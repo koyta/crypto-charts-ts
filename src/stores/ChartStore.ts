@@ -104,17 +104,14 @@ class ChartStore {
     this.state = 'pending';
     try {
       const UserStore = this.rootStore.UserStore;
-      let fetchedData = [];
-
-      for (let i = 0; i < UserStore.getCrypto.length; i++) {
-        fetchedData.push(await helpers.getHistoricalDataAboutCrypto(UserStore.getCrypto[i], UserStore._currency, this.getHistoricalPeriod));
-        console.log(`ChartStore| Loading data for crypto: ${UserStore._crypto[i]}.`);
-      }
-
-      // Обрезаем загруженные данные до того количества, которое хотим увидеть на графике и переворачиваем для удобства просмотра
       let numberOfResults = this.rootStore.UserStore.getNumResults;
       if (numberOfResults <= 1) {
-        throw new RangeError('Number of checked currencies will be 1 or more');
+        throw new RangeError('Number of requested results will be 1 or more');
+      }
+      let fetchedData = [];
+      for (let i = 0; i < UserStore.getCrypto.length; i++) {
+        console.log(`ChartStore| Loading data for crypto: ${UserStore._crypto[i]}.`);
+        fetchedData.push(await helpers.getHistoricalDataAboutCrypto(UserStore.getCrypto[i], UserStore._currency, this.getHistoricalPeriod));
       }
       let slicedData: Array<any>;
       slicedData = fetchedData.map((value: void, index: number, array: any) => {
@@ -163,9 +160,10 @@ class ChartStore {
     const newDataset: chartjs.ChartDataSets = {
       data: data,
       label: legend,
-      backgroundColor: this.colors[this.nextColor++]
+      backgroundColor: this.colors[this.nextColor],
+      hoverBackgroundColor: this.colors[this.nextColor]
     };
-    console.log(newDataset.backgroundColor);
+    this.nextColor++;
     this.cData.datasets.push(newDataset);
     this.cData.labels = labels;
   }
