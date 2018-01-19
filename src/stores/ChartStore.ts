@@ -125,6 +125,7 @@ class ChartStore {
       runInAction('Erasing old chart data', () => {
         this.cData.datasets.splice(0, this.cData.datasets.length);
         this.cData.labels.splice(0, this.cData.labels.length);
+        this.nextColor = 0;
       });
 
       runInAction('Add new data to chart', () => {
