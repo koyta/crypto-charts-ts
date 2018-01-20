@@ -22,7 +22,6 @@ class User {
 
   @action setNumResults(value: number) {
     this._numResults = value;
-    console.log('Предпочтительное количество результатов теперь', this._numResults);
   }
 
   @computed get getNumResults(): number {
@@ -31,7 +30,6 @@ class User {
 
   @action setCurrency(currency: Currencies) {
     this._currency = currency;
-    console.log(`Предпочтительная валюта теперь ${this._currency}.`);
   }
 
   @computed get getCurrency() {
