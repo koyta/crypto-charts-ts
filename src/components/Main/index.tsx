@@ -8,7 +8,10 @@ const Main = (props: MainComponentProps) => {
     <main>
       <div className="container">
         <Chart/>
-        <button className="btn btn-primary" onClick={props.onHistoricalBtnClick}>get historical data</button>
+        <div className="btn-set">
+          <button className="btn btn-primary" onClick={props.onHistoricalBtnClick}>get historical data</button>
+          <a className="btn btn-save" href="#" onClick={props.onSaveBtnClick} download="crypto-charts.png">save</a>
+        </div>
       </div>
     </main>
   );

@@ -14,12 +14,19 @@ class MainContainer extends React.Component <MainContainerProps, {}> {
     this.props.store.ChartStore.historicalFetch();
   }
 
+  onSaveBtnClick = (e: React.SyntheticEvent<HTMLAnchorElement>) => {
+    const canvas: HTMLCanvasElement = document.querySelector('.chartjs-render-monitor') as HTMLCanvasElement;
+    const dataURL = canvas.toDataURL('image/png');
+    e.currentTarget.href = dataURL;
+  }
+
   render() {
     return (
       <Main
         pageHeading="Bitcoin"
         onButtonClick={this.onButtonClick}
         onHistoricalBtnClick={this.onHistoricalBtnClick}
+        onSaveBtnClick={this.onSaveBtnClick}
       />
     );
   }

@@ -37,6 +37,7 @@ interface MainContainerProps {
   store?: any;
   onButtonClick?(event: object): void;
   onHistoricalBtnClick?(event: object): void;
+  onSaveBtnClick?(event: object): void;
 }
 
 interface MainComponentProps {
@@ -44,6 +45,7 @@ interface MainComponentProps {
   store?: any;
   onButtonClick?(event: object): void;
   onHistoricalBtnClick?(event: object): void;
+  onSaveBtnClick?(event: object): void;
 }
 
 interface ChartContainerProps {
