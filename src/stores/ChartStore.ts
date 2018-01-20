@@ -147,11 +147,10 @@ class ChartStore {
         });
       });
       this.state = 'done';
-
     } catch (err) {
       runInAction('Catch error', () => {
         this.state = 'error';
-        console.log(err);
+        alert(err.message);
       });
     }
   }
