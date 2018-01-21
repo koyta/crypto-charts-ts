@@ -1,0 +1,35 @@
+.ti {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.ti > label.ti_label {
+  font-size: 100%;
+  line-height: 1;
+}
+
+.ti input.ti_input {
+  height: 46px;
+  border: 2px solid var(--blue);
+  border-radius: 25px;
+  padding: 0 20px;
+  text-align: center;
+  font-size: 100%;
+  line-height: 1;
+  color: var(--darkblue);
+  min-width: 100px;
+  width: 100px;
+  transition: border .2s;
+}
+
+input.ti_input::placeholder {
+  color: var(--lightblue);
+}
+
+input.ti_input:focus {
+  outline: none;
+  border-color: var(--darkblue)
+}
