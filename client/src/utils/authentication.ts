@@ -1,14 +1,7 @@
 const crypto = require('crypto-js');
-// const ba = require('bitcoinaverage');
 
-// Constructing signature
 export const publicKey = 'MGVlNjY1OWI2NjUxNDAxMDg1NzA0MzUyYjlhN2YwNjc';
 export const secretKey = 'NWM4NDQyNTcxZDkzNGNhMWEzMWIwOTc5OTJlZjU0NWMzMTNhNmQyNWM5N2I0OTlmYjI5ODBmMzY4OWY0N2YwNw';
-// export const wsClient = ba.websocketClient(publicKey, secretKey);
-//
-// wsClient.connectToTickerWebsocket('global', 'BTCUSD', function(response: any) {
-//   console.log(response);
-// });
 
 let timestamp = Math.floor(Date.now() / 1000);
 let payload = timestamp + '.' + publicKey;
