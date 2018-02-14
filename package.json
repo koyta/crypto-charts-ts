@@ -1,18 +1,15 @@
 {
-  "name": "example-create-react-app-express",
+  "name": "express-react-realtime-app",
   "version": "1.0.0",
   "scripts": {
-    "client": "cd client && yarn start",
+    "client": "cd client && npm start",
     "server": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "bitcoinaverage": "^0.1.4",
     "crypto-js": "^3.1.9-1",
     "express": "^4.16.2",
-    "socket.io": "^2.0.4",
-    "websocket": "^1.0.25",
     "ws": "^4.0.0"
   },
   "devDependencies": {
