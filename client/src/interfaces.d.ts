@@ -55,9 +55,54 @@ interface ChartContainerProps {
 interface ChartComponentProps {
   chartData: chartjs.ChartData;
   type: chartjs.ChartType;
+  options: chartjs.ChartOptions;
 }
 
 interface FetchedAverageData {
   readonly average: number;
   readonly time: string;
+}
+
+interface RealtimeData {
+  data?: RealtimeWebsocketData;
+  event?: string;
+}
+
+interface RealtimeStatus {
+  type: string;
+  data: string;
+}
+
+interface RealtimeWebsocketData {
+  ask?: number;
+  bid?: number;
+  last?: number;
+  high?: number;
+  low?: number;
+  event?: string;
+  open?: RealtimeWebsocketDataTime;
+  averages?: RealtimeWebsocketDataTime;
+  volume?: number;
+  volume_percent?: number;
+  timestamp?: number;
+  display_timestamp?: string;
+  success?: boolean;
+  time?: string;
+}
+
+interface RealtimeWebsocketDataTime {
+  day?: number;
+  week?: number;
+  month?: number;
+}
+
+interface ChartRTState {
+  data: chartjs.ChartData;
+  isFetching: boolean;
+  testData: RealtimeData | RealtimeStatus | null;
+}
+
+interface ChartRTComponent {
+  data: chartjs.ChartData;
+  options: chartjs.ChartOptions;
 }
