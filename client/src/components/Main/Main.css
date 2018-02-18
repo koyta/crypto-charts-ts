@@ -46,6 +46,17 @@ main > .container {
     background-color: white;
 }
 
+.btn-danger {
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+}
+
+.btn-danger:hover, .btn-danger:focus {
+    background-color: red;
+    color: white;
+}
+
 .btn-save {
     background-color: white;
     border: 1px solid var(--blue);
