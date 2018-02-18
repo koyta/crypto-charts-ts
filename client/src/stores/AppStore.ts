@@ -7,13 +7,13 @@ interface AppStore {
 }
 
 class AppStore {
-  @observable showChart: boolean;
+  // @observable showChart: boolean;
   @observable showSidebar: boolean;
   @observable activeNav: string;
 
   constructor(rootStore: any) {
     this.showSidebar = true;
-    this.showChart = false;
+    // this.showChart = false;
     this.activeNav = 'View';
     this.rootStore = rootStore;
   }
