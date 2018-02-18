@@ -1,5 +1,6 @@
 import * as chartjs from 'chart.js';
 import * as React from 'react';
+import ChartStore from './stores/ChartStore';
 
 declare module '*.png'; // for import images
 
@@ -18,7 +19,28 @@ type HistoricalPeriod = 'alltime' | 'monthly' | 'daily';
 interface RootStore {
   UserStore: any;
   AppStore: any;
-  ChartStore: any;
+  ChartStore: ChartStoreInterface;
+}
+
+type ActionState = 'pending' | 'done' | 'error';
+
+interface ChartStoreInterface {
+  options?: chartjs.ChartOptions;
+  colors: chartjs.ChartColor;
+  nextColor: number;
+  realtimeData: chartjs.ChartData;
+  chartType: chartjs.ChartType;
+  chartData: chartjs.ChartData;
+  _historicalPeriod: HistoricalPeriod;
+  state: ActionState;
+  rootStore: RootStore;
+  updateRealtimeData(newValue: RealtimeWebsocketData): void;
+  setHistoricalPeriod(period: HistoricalPeriod): void;
+  setChartType(type: chartjs.ChartType): void;
+  historicalFetch(crypto: string, currency: string, period: '' | 'alltime' | 'daily' | 'monthly'): Promise<any>;
+  erase(): void;
+  prepareDataBeforeAdd(data: Array<HistoryFetchedData[]>): void;
+  addChartDataToDataset(data: number[], labels: Array<string | string[]>, legend: string): void;
 }
 
 interface AppProps {
@@ -97,12 +119,12 @@ interface RealtimeWebsocketDataTime {
 }
 
 interface ChartRTState {
-  data: chartjs.ChartData;
   isFetching: boolean;
-  testData: RealtimeData | RealtimeStatus | null;
 }
 
 interface ChartRTComponent {
   data: chartjs.ChartData;
   options: chartjs.ChartOptions;
+  startFetching(): void;
+  stopFetching(): void;
 }
