@@ -1,5 +1,5 @@
 import { action, computed, observable, runInAction, IObservable, toJS } from 'mobx';
-import * as helpers from '../utils/gettingData';
+import * as helpers from '../utils/fetch';
 import * as chartjs from 'chart.js';
 import * as I from '../interfaces';
 
@@ -7,7 +7,8 @@ class ChartStore implements I.ChartStoreInterface {
 
   options?: chartjs.ChartOptions = {
     responsive: true,
-    maintainAspectRatio: true
+    maintainAspectRatio: false,
+    
   };
 
   colors: chartjs.ChartColor = [
@@ -82,7 +83,8 @@ class ChartStore implements I.ChartStoreInterface {
   }
 
   /**
-   * Устанавливает выбрнные тип графика. График рендерится заново, структура данных должна немного поменяться.
+   * Sets the selected graphic type.
+   * TODO The graph should rerender, the data structure should change slightly.
    * @param {Chart.ChartType} type
    */
   @action setChartType(type: chartjs.ChartType) {
@@ -132,13 +134,15 @@ class ChartStore implements I.ChartStoreInterface {
     }
   }
 
-  /** 
+  /**
    * Erasing chart data
    */
   @action erase() {
-    this.chartData.datasets.splice(0, this.chartData.datasets.length);
-    this.chartData.labels.splice(0, this.chartData.labels.length);
-    this.nextColor = 0;
+    if (this.chartData.datasets && this.chartData.labels) {
+      this.chartData.datasets.splice(0, this.chartData.datasets.length);
+      this.chartData.labels.splice(0, this.chartData.labels.length);
+      this.nextColor = 0;
+    }
   }
 
   @action prepareDataBeforeAdd(data: Array<I.HistoryFetchedData[]>) {
@@ -181,8 +185,12 @@ class ChartStore implements I.ChartStoreInterface {
       hoverBackgroundColor: this.colors[this.nextColor]
     };
     this.nextColor++;
-    this.chartData.datasets.push(newDataset);
-    this.chartData.labels = labels;
+    if (this.chartData.datasets) {
+      this.chartData.datasets.push(newDataset);
+      this.chartData.labels = labels;
+    } else {
+      throw new Error('No datasets in chartData variable');
+    }
   }
 }
 

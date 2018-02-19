@@ -7,13 +7,11 @@ interface AppStore {
 }
 
 class AppStore {
-  // @observable showChart: boolean;
   @observable showSidebar: boolean;
   @observable activeNav: string;
 
   constructor(rootStore: any) {
     this.showSidebar = true;
-    // this.showChart = false;
     this.activeNav = 'View';
     this.rootStore = rootStore;
   }
@@ -42,9 +40,9 @@ class AppStore {
   toggleSidebar() {
     this.showSidebar = !this.showSidebar;
     const burger = document.querySelector('.hamburger');
-    burger.classList.toggle('is-active');
+    if (burger) { burger.classList.toggle('is-active'); }
     const aside = document.querySelector('aside.sidebar');
-    aside.classList.toggle('sidebar--active');
+    if (aside) { aside.classList.toggle('sidebar--active'); }
   }
 }
 
