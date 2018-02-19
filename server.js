@@ -1,29 +1,31 @@
 const express = require('express')
-const localWebSocketServer = require('./localWSServer')
+const cors = require('cors')
+const WebsocketServer = require('./websocketServer')
 
 const app = express()
 const port = 5000
+const WSS = new WebsocketServer(8080);
 
-const localWSS = new localWebSocketServer(8080);
+app.use(cors());
 
-app.use(express.json());
-app.use(express.urlencoded({
-  extended: false
-}));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "*");
+  next();
+});
 
-app.post('/wss/connect', function (req, res) {
-  res.send(`res: ${res.body}`);
-  localWSS.subscribe(res.crypto, res.currency);
-  res.json({
-    OK: 1
-  });
+app.post('/wss/connect', cors(), function (req, res, next) {
+  WSS.subscribe('BTC', 'RUB');
+  res.sendStatus(200);
 })
 
-app.post('/wss/close', function (req, res) {
-  localWSS.unsubscribe();
-  res.json({
-    OK: 2
-  });
+app.get('/wss/close', function (req, res, next) {
+  WSS.unsubscribe();
+  res.sendStatus(200);
+})
+
+app.get('/', (req, res) => {
+  res.sendStatus(200);
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}`)) //listening on 5000

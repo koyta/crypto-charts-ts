@@ -3,8 +3,11 @@ const {
     axiosBA,
     publicKey
 } = require('./axios');
+const {
+    WEBSOCKET_TICKER_URL
+} = require('./constants')
 
-class localWebSocketServer {
+class websocketServer {
 
     /**
      * Function for request a ticket to authorize a connection
@@ -19,7 +22,7 @@ class localWebSocketServer {
 
     /**
      * Constructing a server
-     * @param {number} port 
+     * @param {number} port
      */
     constructor(port) {
 
@@ -32,38 +35,38 @@ class localWebSocketServer {
         this.wsBA = undefined;
 
         this.subscriptionMessage = {
-            "event": "message",
-            "data": {
-                "operation": "subscribe",
-                "options": {
-                    "currency": "BTCUSD",
-                    "symbol_set": "global"
+            event: "message",
+            data: {
+                operation: "subscribe",
+                options: {
+                    currency: "BTCUSD",
+                    symbol_set: "global"
                 }
             }
         }
 
         this.unsubscriptionMessage = {
-            "event": "message",
-            "data": {
-                "operation": "unsubscribe",
-                "options": {
-                    "currency": "BTCUSD",
-                    "symbol_set": "global"
+            event: "message",
+            data: {
+                operation: "unsubscribe",
+                options: {
+                    currency: "BTCUSD",
+                    symbol_set: "global"
                 }
             }
         }
 
         this.wsServer.on('connection', function connection(incomingWS) {
+            incomingWS.onmessage = message => {
+                console.log(message);
+            }
             console.log('LOG: New WebSocket connection.');
         })
 
         this.wsServer.on('close', function close(error) {
             console.log(`LOG: WebSocket closed. ${error.code} ${error.reason}`);
             this.unsubscribe();
-        })
-
-        this.wsServer.on('message', function message(msg) {
-            console.log(`MESSAGE: ${msg}`);
+            this.wsBA.close();
         })
 
         this.wsServer.on('error', (error) => {
@@ -78,8 +81,13 @@ class localWebSocketServer {
      */
     async subscribe(crypto, currency) {
         try {
+            console.log(crypto, currency);
+            // this.updateSubscriptionMessage(crypto, currency);
+            /**
+             * Creating local connection to BA wss with ticket
+             */
             this.ticket = await this.loadTicket();
-            this.wsBA = new WebSocket(`wss://apiv2.bitcoinaverage.com/websocket/ticker?ticket=${this.ticket}&public_key=${publicKey}`);
+            this.wsBA = new WebSocket(`${WEBSOCKET_TICKER_URL}?ticket=${this.ticket}&public_key=${publicKey}`);
 
             /**
              * Callback function calls on open Bitcoing Average websocket connection
@@ -96,8 +104,8 @@ class localWebSocketServer {
                 const {
                     data
                 } = event;
-                console.log(data);
                 this.resultData = data;
+                console.log(data);
                 // Sending data to all of local websocket server clients
                 this.wsServer.clients.forEach(function each(client) {
                     if (client.readyState === WebSocket.OPEN) {
@@ -120,8 +128,8 @@ class localWebSocketServer {
     /**
      * Stop the data stream by websockets (sending unsubscribe message)
      * Closing connection to BitcoinAverage
-     * @param {string} crypto 
-     * @param {string} currency 
+     * @param {string} crypto
+     * @param {string} currency
      */
     unsubscribe(crypto, currency) {
         this.wsBA.send(JSON.stringify(this.unsubscriptionMessage));
@@ -133,4 +141,4 @@ class localWebSocketServer {
     }
 }
 
-module.exports = localWebSocketServer
+module.exports = websocketServer
