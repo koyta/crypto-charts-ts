@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { MenuContainer } from '../../interfaces';
+import { MenuComponentProps } from '../../interfaces';
 import { observer } from 'mobx-react';
 import TextInput from '../Common/TextInput';
 import RadioButton from '../Common/RadioButton';
 import Checkbox from '../Common/Checkbox';
 
-const Menu = observer((props: MenuContainer) => {
-  const { UserStore, AppStore } = props.store;
+const Menu = observer((props: MenuComponentProps) => {
+  const { AppStore } = props.store;
 
   return (
     <aside className="sidebar sidebar--active">

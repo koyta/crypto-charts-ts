@@ -1,14 +1,9 @@
 import * as React from 'react';
-import MenuComponent from '../../components/Menu';
+import Menu from '../../components/Menu';
 import { inject } from 'mobx-react';
-import { MenuContainer } from '../../interfaces';
 
 @inject('store')
-class Menu extends React.Component<MenuContainer, {}> {
-
-  constructor(props: MenuContainer) {
-    super(props);
-  }
+class MenuContainer extends React.Component<{store?: any}, {}> {
 
   onCurrencyChange = (event: React.SyntheticEvent<HTMLInputElement>) => {
     this.props.store.UserStore.setCurrency(event.currentTarget.value.toUpperCase());
@@ -24,7 +19,7 @@ class Menu extends React.Component<MenuContainer, {}> {
 
   render() {
     return (
-      <MenuComponent
+      <Menu
         {...this.props}
         onCurrencyChange={this.onCurrencyChange}
         onTypeChange={this.onTypeChange}
@@ -34,4 +29,4 @@ class Menu extends React.Component<MenuContainer, {}> {
   }
 }
 
-export default Menu;
+export default MenuContainer;

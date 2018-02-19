@@ -13,7 +13,7 @@ class ChartContainer extends React.Component<ChartContainerProps, {}> {
         const { ChartStore } = this.props.store;
 
         return (
-          <Chart chartData={toJS(ChartStore.cData)} type={ChartStore.chartType}/>
+          <Chart chartData={toJS(ChartStore.chartData)} type={ChartStore.chartType} options={ChartStore.options}/>
         );
     }
 }

@@ -47,11 +47,11 @@ interface AppProps {
   store?: any;
 }
 
-interface MenuContainer {
+interface MenuComponentProps {
   store?: any;
-  onCurrencyChange?(e: React.SyntheticEvent<HTMLInputElement>): void;
-  onTypeChange?(e: React.SyntheticEvent<HTMLInputElement>): void;
-  onPeriodChange?(e: React.SyntheticEvent<HTMLInputElement>): void;
+  onCurrencyChange(e: React.SyntheticEvent<HTMLInputElement>): void | undefined;
+  onTypeChange(e: React.SyntheticEvent<HTMLInputElement>): void | undefined;
+  onPeriodChange(e: React.SyntheticEvent<HTMLInputElement>): void | undefined;
 }
 
 interface MainContainerProps {
@@ -120,6 +120,7 @@ interface RealtimeWebsocketDataTime {
 
 interface ChartRTState {
   isFetching: boolean;
+  status: string;
 }
 
 interface ChartRTComponent {
@@ -127,4 +128,6 @@ interface ChartRTComponent {
   options: chartjs.ChartOptions;
   startFetching(): void;
   stopFetching(): void;
+  isFetching: boolean;
+  status: string;
 }

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {} from './utils/websocket';
 import { inject, observer } from 'mobx-react';
-import Devtools from 'mobx-react-devtools';
 import Menu from './containers/Menu';
 import Main from './containers/Main';
 import './App.css';
