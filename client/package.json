@@ -31,5 +31,9 @@
     "mobx-react-devtools": "^4.2.15",
     "react-chartjs-2": "^2.7.0",
     "ws": "^4.0.0"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^3.0.3",
+    "utf-8-validate": "^4.0.0"
   }
 }
