@@ -12,8 +12,14 @@ aside.sidebar--active {
     transform: translateX(0);
 }
 
+.sidebar header {
+    top: 14px;
+    position: relative;
+    margin-bottom: 10vh;
+}
+
 aside.sidebar header h1 {
-    margin: 0 0 10vh;
+    margin: 0;
     font-weight: 400;
     color: black;
     font-size: 175%;
@@ -21,11 +27,13 @@ aside.sidebar header h1 {
 
 aside.sidebar > .container {
     display: flex;
+    position: relative;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
     align-content: center;
     padding: 5vh 45px;
+    padding-top: 0;
 }
 
 aside.sidebar nav {
