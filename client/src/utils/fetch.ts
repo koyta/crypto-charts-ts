@@ -9,7 +9,6 @@ async function getDataAboutCrypto(crypto: string, currency?: string) {
   try {
     const response = await axios.get(makeTickerUrl(crypto, currency));
     if (response.status === 200) {
-      // console.dir(`getDataAboutCrypto | ${JSON.stringify(response, null, '\t')}`);
       return response.data;
     }
   } catch {
@@ -17,9 +16,7 @@ async function getDataAboutCrypto(crypto: string, currency?: string) {
   }
 }
 
-async function getHistoricalDataAboutCrypto(crypto: string,
-                                            currency?: string,
-                                            time?: '' | 'alltime' | 'daily' | 'monthly') {
+async function getHistoricalDataAboutCrypto(crypto: string, currency?: string, time?: '' | 'alltime' | 'daily' | 'monthly') {
   try {
     const response = await axios.get(
       historicalUrl + crypto + currency,
@@ -31,7 +28,6 @@ async function getHistoricalDataAboutCrypto(crypto: string,
       }
     );
     if (response.status === 200) {
-      // console.dir(`getHistoricalDataAboutCrypto | ${JSON.stringify(response, null, '\t')}`);
       return response.data;
     }
   } catch {
