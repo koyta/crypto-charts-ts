@@ -1,0 +1,109 @@
+main {
+    height: 100%;
+    min-width: calc(100%);
+    background-color: white;
+    position: relative;
+    transition: all .4s;
+    left: -400px
+}
+
+aside.sidebar--active ~ main {
+    min-width: calc(100% - 400px);
+    left: 0;
+}
+
+main > .container {
+    position: relative;
+    height: 100%;
+    width: 90%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    margin: auto auto;
+}
+
+.container > .content-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content-wrapper > .chart-wrapper {
+    position: relative;
+    height: 100%;
+}
+
+.btn {
+    cursor: pointer;
+    border: 0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-size: 90%;
+    transition: background-color .3s, color .3s
+}
+
+.btn-primary {
+    background-color: var(--darkblue);
+    border: 1px solid white;
+    color: white;
+}
+
+.btn-primary:hover {
+    border-color: var(--darkblue);
+    color: var(--darkblue);
+    background-color: white;
+}
+
+.btn-danger {
+    background-color: white;
+    border: 1px solid red;
+    color: red;
+}
+
+.btn-danger:hover, .btn-danger:focus {
+    background-color: red;
+    color: white;
+}
+
+.btn:disabled {
+    background-color: var(--gray);
+    border: var(--gray);
+    color: #CCCCCC;
+}
+
+.btn-save {
+    background-color: white;
+    border: 1px solid var(--blue);
+    color: var(--blue);
+}
+
+.btn-save:hover {
+    background-color: var(--blue);
+    color: white;
+}
+
+.btn-set {
+    width: 100%;
+    min-height: 62px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.btn-set > .btn {
+    margin: 10px;
+}
+
+a.btn, a.btn:visited, a.btn:focus {
+    text-decoration: none;
+}
+
+.status {
+    color: var(--blue);
+    text-align: center;
+}

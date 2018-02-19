@@ -1,0 +1,84 @@
+aside.sidebar {
+    height: 100%;
+    background-color: var(--gray);
+    position: relative;
+    min-width: 400px;
+    z-index: 10;
+    transition: transform .4s;
+    transform: translateX(-100%);
+}
+
+aside.sidebar--active {
+    transform: translateX(0);
+}
+
+.sidebar header {
+    top: 14px;
+    position: relative;
+    margin-bottom: 10vh;
+}
+
+aside.sidebar header h1 {
+    margin: 0;
+    font-weight: 400;
+    color: black;
+    font-size: 175%;
+}
+
+aside.sidebar > .container {
+    display: flex;
+    position: relative;
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    padding: 5vh 45px;
+    padding-top: 0;
+}
+
+aside.sidebar nav {
+    color: black;
+    position: relative;
+}
+
+section.sidebar__options {
+    display: block;
+    width: 100%;
+}
+
+.options__nav {
+    margin: 1.25em 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.options__nav_el {
+    display: block;
+    font-size: 125%;
+    margin: 0 5%;
+    color: black;
+    transition: color .3s;
+    cursor: pointer;
+}
+
+.options__nav_el--active {
+    color: var(--darkblue)
+}
+
+form.sidebar__form {
+    width: 100%
+}
+
+fieldset.form__set {
+    border: 0;
+    margin: 10px 0;
+    padding: 0;
+}
+
+fieldset > .set_title {
+    display: block;
+    margin: 1.5em 0 .5em;
+    font-size: 125%;
+    font-weight: normal;
+}
