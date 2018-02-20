@@ -13,7 +13,9 @@
     "express": "^4.16.2",
     "ws": "^4.0.0",
     "react-scripts-ts": "^2.13.0",
-    "typescript": "^2.7.2"
+    "typescript": "^2.7.2",
+    "chart.js": "^2.7.1",
+    "mobx": "^3.4.0"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"
