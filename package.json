@@ -6,6 +6,7 @@
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "postinstall": "npm install --prefix client",
+    "heroku-postbuild": "cd client && npm run build",
     "start": "node server.js && cd client && npm start"
   },
   "dependencies": {
@@ -17,5 +18,9 @@
   },
   "devDependencies": {
     "concurrently": "^3.5.0"
-  }
+  },
+  "cacheDirectories": [
+    "node_modules",
+    "client/node_modules"
+  ]
 }
