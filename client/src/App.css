@@ -1,0 +1,25 @@
+.wrapper {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  display: block;
+  background-color: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.hamburger {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  z-index: 12;
+}
+
+.hamburger:focus {
+  outline: none;
+}
