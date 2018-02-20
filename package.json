@@ -6,7 +6,7 @@
     "server": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "postinstall": "npm install --prefix client",
-    "start": "node server.js"
+    "start": "node server.js && cd client && npm start"
   },
   "dependencies": {
     "axios": "^0.17.1",
