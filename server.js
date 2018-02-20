@@ -3,7 +3,7 @@ const cors = require('cors')
 const WebsocketServer = require('./websocketServer')
 
 const app = express()
-const port = process.ENV.port || 5000
+const port = process.env.PORT || 5000;
 const WSS = new WebsocketServer(8080);
 
 app.use(cors());
